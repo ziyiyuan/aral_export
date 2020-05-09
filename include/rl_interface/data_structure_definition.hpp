@@ -154,10 +154,34 @@ typedef struct _ftSensorCalibResult
 
 }FtSensorCalibrationResult;
 
+struct POSITION
+{
+    double x;
+    double y;
+    double z;
+};
+
+struct RPY
+{
+    double r;// rz
+    double p;
+    double y;
+};
+
+typedef struct _PARA
+{
+    POSITION tool_para;
+    POSITION measurement_para;
+    RPY measurement_rpy_para;
+    double dh_para[ROBOT_DOF * 4];  //order: alhpa, a, d, theta
+    double beta[ROBOT_DOF];
+
+}KinematicsCalibrationPara;
+
 typedef struct _kinematicsCalibResult
 {
+    KinematicsCalibrationPara para_calid;
     double all_d_para_[MAX_IDEN_PARA_NUM];
-
     double mean_value;
     double max_value;
     double rms_value;

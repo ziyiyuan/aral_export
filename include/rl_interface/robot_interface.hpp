@@ -40,7 +40,7 @@ enum InterfaceFlag
     LOG_ERROR          = 0x0C,  //bit3-4
 };
 
-enum ReturnValue
+enum ReturnValuerobot_handlerrobot_handler
 {
     RET_SUCCESS = 0,
     ROBOT_DOF_DISMATCH = -100,
@@ -83,6 +83,8 @@ public:
     int getLatestError(int& errCode, std::string& errDes);
 
     /************ Robot Model ************/
+    void setRobotModel(const char * modelName, unsigned char flag = 0x00);  // for temporary use.
+
     void setGravityVectorOfRobotBase(double vecX, double vecY, double vecZ, int isVector = 1);
     //!
     int getRobotDOF(unsigned int dof);
@@ -96,7 +98,8 @@ public:
     void setEndSensorPose(double * pose, int type = POS_RPY);       // place here for temporary
     //!
     void setEndSensorInertial(const double m, const double* com, const double * inertial);       // place here for temporary
-
+    //!
+    void getRobotDHPara(std::vector<std::vector<double> > &dhPara);
 
     /************ Robot Status ************/
     //! flag: bit8 -> bit0
